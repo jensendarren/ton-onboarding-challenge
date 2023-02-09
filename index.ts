@@ -2,6 +2,8 @@ import {Address, TonClient, toNano} from "ton"
 import {BN} from 'bn.js'
 import {unixNow} from "./src/lib/utils";
 import {MineMessageParams, Queries} from "./src/giver/NftGiver.data";
+import * as dotenv from 'dotenv' 
+dotenv.config()
 
 async function main () {
 
@@ -10,7 +12,7 @@ async function main () {
 
   const client = new TonClient({
     endpoint: 'https://testnet.toncenter.com/api/v2/jsonRPC',
-    apiKey: '15821c32875fe1944d68453deee8aef7adddf0deb16fdcfdd32302b91492d378',
+    apiKey: process.env.APIKEY
   })
 
   const miningData = await client.callGetMethod(collection, 'get_mining_data')
